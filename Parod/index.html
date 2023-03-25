@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Periodontitis Classification</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <form id="myForm">
+      <label>Kliniskt fästeförlust (mm):</label>
+      <select id="attachmentLossSelect" required>
+        <option value="low">Ingen fästeförlust</option>
+        <option value="medium">Mindre än 2mm</option>
+        <option value="high">Mer än 2mm</option>
+      </select>
+      <br>
+      <label>Benförlust/ålders-score :</label>
+      <select id="boneLossRatioSelect" required>
+        <option value="low">Mindre än 0,25</option>
+        <option value="medium">Mellan 0,25-1.0</option>
+        <option value=">high">Mer än 1.0</option>
+      </select>
+      <br>
+      <label>Phenotype:</label>
+        <select id="plaqueTartarSelect" required>
+        <option value="low">Mycket plack/tandsten men låg fästeförlust</option>
+        <option value="medium">Korrelation mellan plack/tandsten och fästeförlusten</option>
+        <option value="high">Låg plack/tandstensmängd i korrelation till den fästeförlusten</option>
+        </select>
+          <input type="submit" value="Generera Resultat">
+          </form>
+          <div id="result"></div>
+          
+          <script>
+            document.getElementById("myForm").addEventListener("submit", function(e) {
+              e.preventDefault();
+              var grade = "";
+              var attachmentLoss = document.getElementById("attachmentLossSelect").value;
+              var boneLossRatio = document.getElementById("boneLossRatioSelect").value;
+              var plaqueTartar = document.getElementById("plaqueTartarSelect").value;
+          
+              if (attachmentLoss === "low" && boneLossRatio === "low" && plaqueTartar === "low" ) {
+                grade = "Grad A";
+              } else if (attachmentLoss === "medium" || boneLossRatio === "medium" || plaqueTartar === "medium") {
+                grade = "Grad B";
+              } else {
+                grade = "Grad C";
+              }
+          
+              document.getElementById("result").innerHTML = grade;
+            });
+          </script>
+          
+          
+
+  </body>
+</html>
